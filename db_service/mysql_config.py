@@ -8,7 +8,7 @@ class MYSQL(object):
     MYSQL_HOST = 'localhost'
     MYSQL_PORT = 3306
     MYSQL_USERNAME = 'root'
-    MYSQL_PASSWORD = 'password'
+    MYSQL_PASSWORD = 'woshiamazon007'
     MYSQL_DB = 'HOME_PAGE_DB'
     MYSQL_TABLE_BANNER = 'banner_record'
     MYSQL_TABLE_GOODS = 'goods_record'

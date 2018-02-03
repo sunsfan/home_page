@@ -66,8 +66,12 @@ class USER(Base):
         jstr = {"username": self.username, "password": self.password}
         return json.dumps(jstr)
 
-# MYSQL_URI = "mysql+pymysql://{0}:{1}@{2}:{3}/{4}?charset=utf8".format(MYSQL.MYSQL_USERNAME,
-#                         MYSQL.MYSQL_PASSWORD, MYSQL.MYSQL_HOST, MYSQL.MYSQL_PORT, MYSQL.MYSQL_DB)
-# engine = create_engine(MYSQL_URI, pool_size=10, pool_recycle=3600, max_overflow=5)
-# Base.metadata.drop_all(engine)
-# Base.metadata.create_all(engine)
+def main():
+    MYSQL_URI = "mysql+pymysql://{0}:{1}@{2}:{3}/{4}?charset=utf8".format(MYSQL.MYSQL_USERNAME,
+                        MYSQL.MYSQL_PASSWORD, MYSQL.MYSQL_HOST, MYSQL.MYSQL_PORT, MYSQL.MYSQL_DB)
+    engine = create_engine(MYSQL_URI, pool_size=10, pool_recycle=3600, max_overflow=5)
+    Base.metadata.drop_all(engine)
+    Base.metadata.create_all(engine)
+
+if __name__ == '__main__':
+    main()
