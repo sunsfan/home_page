@@ -12,7 +12,7 @@ app.register_blueprint(user_opt.user_blueprint)
 app.register_blueprint(index_opt.index_blueprint)
 app.register_blueprint(upload_opt.upload_blueprint)
 
-UPLOAD_FOLDER = '/Users/sunteng/PycharmProjects/home-page/image/'
+UPLOAD_FOLDER = '/opt/home_page/home-page/image/'
 
 
 @app.route("/index", methods=['GET'])
