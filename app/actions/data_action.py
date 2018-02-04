@@ -32,10 +32,10 @@ class DataAction(object):
     def update_data(cls, data):
         data_type = data.get(u'dataType')
         action_type = data.get(u'actionType')
-        token_id = data.get(u'token')
-        check(token_id)
+        # token_id = data.get(u'token')
+        # check(token_id)
         db_data = data.get(u'data')
-        print 'db_data is {type}'.format(type=db_data)
+        # print 'db_data is {type}'.format(type=db_data)
         if data_type == 0:
             banner_data = BANNER(index=db_data.get(u'index'), image=db_data.get(u'image'),
                                  title=db_data.get(u'title'), description=db_data.get(u'description'))
