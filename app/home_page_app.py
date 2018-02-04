@@ -1,6 +1,8 @@
 #! /usr/bin/env python
 # -*- coding:utf-8 -*-
 
+import sys
+sys.path.append('/opt/home_page/home_page/')
 from flask import Flask, render_template
 from app.blueprints import data_opt, index_opt, user_opt, upload_opt
 
