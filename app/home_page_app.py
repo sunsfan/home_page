@@ -24,5 +24,5 @@ def get_index():
 
 if __name__ == '__main__':
     # 本机ip 192.168.1.107
-    app.run(host='0.0.0.0', port=8999)
+    app.run(host='0.0.0.0', port=80)
 
