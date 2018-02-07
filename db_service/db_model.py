@@ -2,11 +2,11 @@
 # -*- coding:utf-8 -*-
 
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, String, LargeBinary, Integer, Float
+from sqlalchemy import Column, String, Integer, Float
 import json
-from werkzeug.security import generate_password_hash, check_password_hash
 from mysql_config import MYSQL
-from sqlalchemy import create_engine, exc, event, select
+from sqlalchemy import create_engine
+
 
 Base = declarative_base()
 
@@ -56,15 +56,13 @@ class QRCODE(Base):
 
 
 class USER(Base):
+
     __tablename__ = MYSQL.MYSQL_TABLE_USER
 
-    username = Column(String(20), primary_key=True, unique=True)
+    username = Column(String(20), primary_key=True)
     password_hash = Column(String(128))
-    token_id = Column(String(128))
-    
-    def __repr__(self):
-        jstr = {"username": self.username, "password": self.password}
-        return json.dumps(jstr)
+    token_hash = Column(String(128))
+
 
 def main():
     MYSQL_URI = "mysql+pymysql://{0}:{1}@{2}:{3}/{4}?charset=utf8".format(MYSQL.MYSQL_USERNAME,

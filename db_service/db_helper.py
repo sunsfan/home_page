@@ -228,8 +228,7 @@ class DBHelper(object):
         return GLOBLE.OK
 
     # 新增管理员用户
-    def add_user_data(self, data):
-        user = USER(username=data.username, password_hash=data.password_hash, token_id=data.token_id)
+    def add_user_data(self, user):
         try:
             self.session.add(user)
             self.session.commit()
@@ -237,30 +236,29 @@ class DBHelper(object):
             self.session.rollback()
         return GLOBLE.OK
 
+    # 根据用户名查找用户
+    def get_user_by_username(self, username):
+        data = self.session.query(USER).filter(USER.username == username).first()
+        return data
+
     # 根据用户名获取口令哈希
     def get_password_hash_by_username(self, username):
         data = self.session.query(USER).filter(USER.username == username).first()
         return data.password_hash
 
     # 根据用户名获取token
-    def get_token_id_by_username(self, username):
+    def get_token_hash_by_username(self, username):
         data = self.session.query(USER).filter(USER.username == username).first()
-        return data.token_id
+        return data.token_hash
 
-    # 更改管理员用户口令
-    def update_user_data(self, data):
-        old = self.get_password_hash_by_username(data.username)
-        if not old:
-            raise MYSQLError('not administrator user')
-        else:
-            if not old.token_id == data.token_id:
-                raise MYSQLError('not administrator user')
-            else:
-                old.password_hash = data.password_hash
-                try:
-                    self.session.commit()
-                except Exception as e:
-                    self.session.rollback()
+    # 更改用户密码和令牌
+    def update_user_data(self, user, password_hash, token_hash):
+        user.password_hash = password_hash
+        user.token_hash = token_hash
+        try:
+            self.session.commit()
+        except Exception as e:
+            self.session.rollback()
         return GLOBLE.OK
 
 

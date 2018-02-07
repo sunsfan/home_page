@@ -4,11 +4,13 @@
 import json
 from flask import Blueprint, request, make_response, jsonify
 from app.actions.data_action import DataAction
+from utils.auth_utils import ba
 
 data_blueprint = Blueprint('data', __name__)
 
 
-@data_blueprint.route('/getdata', methods=['POST'])
+@data_blueprint.route('/datas', methods=['POST'])
+@ba.authorize
 def get_data():
     body = request.get_data()
     try:
@@ -19,7 +21,8 @@ def get_data():
         return make_response(jsonify({'status': 400, 'message': 'Error msg:%s' % e}), 400)
 
 
-@data_blueprint.route('/updatedata', methods=['POST'])
+@data_blueprint.route('/datas', methods=['PUT'])
+@ba.authorize
 def update_data():
     body = request.get_data()
     try:
