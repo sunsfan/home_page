@@ -4,6 +4,7 @@ import json
 from functools import wraps
 from flask import jsonify, request
 from db_service.db_helper import dbhelper
+from utils.hash_utils import HashUtils
 
 
 class BaseAuth(object):

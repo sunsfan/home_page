@@ -30,11 +30,10 @@ class UserAction(object):
         password = data.get(u'password')
         token = data.get(u'token')
         password_hash = HashUtils.get_key(password)
-        token_hash = HashUtils.get_key(token)
         user = dbhelper.get_user_by_username(username)
         if user:
-            dbhelper.update_user_data(user, password_hash=password_hash, token_hash=token_hash)
+            dbhelper.update_user_data(user, password_hash=password_hash, token_hash=token)
         else:
-            user = USER(username=username, password_hash=password_hash, token_hash=token_hash)
+            user = USER(username=username, password_hash=password_hash, token_hash=token)
             dbhelper.add_user_data(user)
         return username

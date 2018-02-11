@@ -14,4 +14,3 @@ MYSQL_TABLE_GOODS = 'goods_record'
 MYSQL_TABLE_QRCODE = 'qrcode_record'
 MYSQL_TABLE_USER = 'user_record'
 
-TOKEN = ''

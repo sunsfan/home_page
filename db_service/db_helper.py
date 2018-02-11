@@ -247,14 +247,14 @@ class DBHelper(object):
         return data.password_hash
 
     # 根据用户名获取token
-    def get_token_hash_by_username(self, username):
+    def get_token_by_username(self, username):
         data = self.session.query(USER).filter(USER.username == username).first()
-        return data.token_hash
+        return data.token
 
     # 更改用户密码和令牌
-    def update_user_data(self, user, password_hash, token_hash):
+    def update_user_data(self, user, password_hash, token):
         user.password_hash = password_hash
-        user.token_hash = token_hash
+        user.token_hash = token
         try:
             self.session.commit()
         except Exception as e:

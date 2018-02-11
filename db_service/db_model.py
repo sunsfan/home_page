@@ -61,7 +61,7 @@ class USER(Base):
 
     username = Column(String(20), primary_key=True)
     password_hash = Column(String(128))
-    token_hash = Column(String(128))
+    token = Column(String(128))
 
 
 def main():
